@@ -3,13 +3,10 @@ const sequelize = require('../config/database');
 const Customer = require('./Customer');
 
 const Tender = sequelize.define('Tender', {
-  id: {
+  tender_id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true,
-  },
-  tender_id: {
-    type: DataTypes.STRING,
     allowNull: false,
   },
   tender_regNumber: {
