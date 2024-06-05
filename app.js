@@ -1,12 +1,17 @@
 const express = require('express');
 const sequelize = require('./config/database');
 const tenderRoutes = require('./routes/tenderRoutes');
+const customerRoutes = require('./routes/customerRoutes');
+const getFieldListRoutes = require('./routes/getFieldListRoutes');
+
 require('dotenv').config();
 
 const app = express();
 
 app.use(express.json());
 app.use('/api', tenderRoutes);
+app.use('/api', customerRoutes);
+app.use('/api', getFieldListRoutes);
 
 sequelize.sync().then(() => {
   console.log('Database connected');
