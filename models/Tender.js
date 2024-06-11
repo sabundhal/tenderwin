@@ -1,6 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 const Customer = require('./Customer');
+const Event = require('./Event');
 
 const Tender = sequelize.define('Tender', {
   tender_id: {
@@ -123,5 +124,8 @@ const Tender = sequelize.define('Tender', {
 });
 
 Tender.belongsTo(Customer, { foreignKey: 'customerId' });
+Tender.hasMany(Event, { as: 'events' });
+Event.belongsTo(Tender);
+
 
 module.exports = Tender;

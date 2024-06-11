@@ -3,8 +3,10 @@ const sequelize = require('./config/database');
 const tenderRoutes = require('./routes/tenderRoutes');
 const customerRoutes = require('./routes/customerRoutes');
 const getFieldListRoutes = require('./routes/getFieldListRoutes');
+const eventRoutes = require('./routes/eventRoutes');
 const populateCustomers = require('./seeders/customerSeeder'); 
 const populateTenders = require('./seeders/tenderSeeder');
+
 
 require('dotenv').config();
 
@@ -14,6 +16,7 @@ app.use(express.json());
 app.use('/api', tenderRoutes);
 app.use('/api', customerRoutes);
 app.use('/api', getFieldListRoutes);
+app.use(eventRoutes);
 
 sequelize.sync().then(async () => {
   console.log('Database connected');
