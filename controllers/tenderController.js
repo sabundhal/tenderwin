@@ -8,7 +8,19 @@ const validStatuses = ['active', 'closed', 'pending', 'cancelled'];
 exports.getAllTenders = async (req, res) => {
   try {
     const tenders = await Tender.findAll();
-    res.json(tenders);
+    const { format } = req.query;
+
+    if (format === 'xml') {
+      let xmlResponse = '<?xml version="1.0" encoding="UTF-8"?><tenders>';
+      tenders.forEach(tender => {
+        xmlResponse += `<tender><Id>${tender.id}</Id><createDate>${tender.createdAt}</createDate><lastUpdateDate>${tender.updatedAt}</lastUpdateDate></tender>`;
+      });
+      xmlResponse += '</tenders>';
+      res.set('Content-Type', 'application/xml');
+      return res.send(xmlResponse);
+    } else {
+      res.json(tenders);
+    }
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

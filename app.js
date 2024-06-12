@@ -6,6 +6,8 @@ const getFieldListRoutes = require('./routes/getFieldListRoutes');
 const eventRoutes = require('./routes/eventRoutes');
 const populateCustomers = require('./seeders/customerSeeder'); 
 const populateTenders = require('./seeders/tenderSeeder');
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpecs = require('./swagger');
 
 
 require('dotenv').config();
@@ -17,6 +19,9 @@ app.use('/api', tenderRoutes);
 app.use('/api', customerRoutes);
 app.use('/api', getFieldListRoutes);
 app.use(eventRoutes);
+// Swagger UI
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
+
 
 sequelize.sync().then(async () => {
   console.log('Database connected');

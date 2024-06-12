@@ -41,17 +41,24 @@ const tenderFields = [
     "okato",
     "contacts"
   ];
+
+  const eventFields = [
+    "name",
+    "date"
+  ];
+
+
   
   exports.getFieldList = (req, res) => {
     const { format, entity } = req.query;
-  
-   
   
     let fields;
     if (entity === 'tender') {
       fields = tenderFields;
     } else if (entity === 'customer') {
       fields = customerFields;
+    } else if (entity === 'event') {
+      fields = eventFields;
     } else {
       return res.status(400).json({ error: 'Invalid entity type' });
     }
