@@ -39,7 +39,7 @@ const authMiddleware = require('../middleware/authMiddleware'); // если у �
 
 /**
  * @swagger
- * /api//GetFieldList:
+ * /api/GetFieldList:
  *   get:
  *     summary: Получить список полей
  *     security:
