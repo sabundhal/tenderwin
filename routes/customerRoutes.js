@@ -3,7 +3,10 @@ const router = express.Router();
 const customerController = require('../controllers/customerController');
 const authMiddleware = require('../middleware/authMiddleware'); // если у вас есть авторизация
 const js2xmlparser = require('js2xmlparser'); // Пакет для конвертации JSON в XML
+const logRequest = require('../middleware/logRequest');
 
+
+router.use(logRequest);
 
 /**
  * @swagger

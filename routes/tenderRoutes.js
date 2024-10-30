@@ -2,7 +2,9 @@ const express = require('express');
 const router = express.Router();
 const tenderController = require('../controllers/tenderController');
 const authMiddleware = require('../middleware/authMiddleware');
+const logRequest = require('../middleware/logRequest');
 
+router.use(logRequest);
 
 /**
  * @swagger

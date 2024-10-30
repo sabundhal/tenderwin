@@ -2,7 +2,9 @@ const express = require('express');
 const router = express.Router();
 const getFieldListController = require('../controllers/getFieldListController');
 const authMiddleware = require('../middleware/authMiddleware'); // если у вас есть авторизация
+const logRequest = require('../middleware/logRequest');
 
+router.use(logRequest);
 // Маршрут для получения списка полей
 /**
  * @swagger
